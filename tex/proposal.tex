@@ -1,0 +1,127 @@
+\documentclass[sigconf, nonacm]{acmart}
+
+\begin{document}
+
+\title{Who's That Author? Authorship attribution of free online texts with computational stylometry.}
+
+\author{Abhinil Dutt}
+\authornote{All authors contributed equally to this project.}
+% \email{abhinil2@illinois.com}
+
+\author{Andrew McQueen}
+\authornotemark[1]
+% \email{andrew61@illinois.com}
+
+\author{Murray Ahmed}
+\authornotemark[1]
+% \email{iahme5@illinois.com}
+
+\affiliation{%
+  \institution{University of Illinois Urbana-Champaign}
+  \city{Champaign}
+  \state{IL}
+  \country{USA}
+}
+
+% \begin{abstract} 
+% \end{abstract}
+
+\maketitle
+
+\section{Overview}
+Authorship attribution -- inferring the author(s) of written works -- is the historical basis
+for the analysis of linguistic style -- formally known as “stylometry” in academic vernacular. 
+Modern applications include revealing ghostwriters, identifying plagiarism, 
+and investigating the origins of ancient literary works. 
+
+% Inferring the author, or authors, of written literary works is a historically important text information problem. 
+
+% Seeking to identify the authors of written works 
+
+% Modern applications to authorship attribution include:
+% revealing ghostwriters, identifying plagiarism,
+% investigating the origins of ancient stories like the Icelandic Sagas.
+
+% infering the author, or authors, of 
+
+
+% Authorship Attribution--
+
+\section{Project Summary}
+
+\subsection{Description}
+
+We seek to implement a text model capable of authorship attribution of free online texts by analyzing their stylistic and lexical features. 
+Our implementation will focus on comparing the differences between distributions of stop words within different text segments of a document.
+This assumption is motivated from a writer's linguistic style depending greatly on how they structure clauses. 
+
+In the search for data resources, we found Project Gutenberg to be a suitable place, since it's online collection is free to access and use. 
+
+% \subsection{Plan}
+
+% Python will be our language of choice so we can utilize the NLTK package.
+% The data will be sourced from either the Gutenberg Project, BookCorpus, or both.
+% Github will be used to collaborate and track contributions.
+% Evaluating the model will follow the traditional training-validation-testing workflow. 
+
+\subsection{Collaboration}
+
+Every two weeks, or before milestones, all group members will meet to produce the deliverable
+and a written summary of the work that each has completed, an updated list of work that still 
+needs to be done, and anything else notable. 
+
+\begin{enumerate}
+  \item \textbf{Bi-weekly meetings}: assessing project progress and planning then next steps. 
+  \item \textbf{Asynchronous work}: facilitated through Git for Version Control and Discord for communication. 
+  \item \textbf{Progress Documentation}: written summaries after each meeting.  
+\end{enumerate}
+
+\subsection{Timeline \& Responsibilities}
+
+The timeline roughly follows a list of task that must be completed chronologically. 
+
+\textbf{Phase 1:} \textit{Data Collection \& Preparation (Weeks 1 - 3)} -- Obtain and clean data (Andrew), preprocess using NLTK (Abhinil), split datasets (Andrew).
+
+\textbf{Phase 2:} \textit{Model Design \& Implementation (Weeks 4 - 7)} -- Research models (Murray), implement stopword-based model (Abhinil), optimize features (Andrew), initial testing (Murray).
+
+\textbf{Phase 3:} \textit{Evaluation \& Testing (Weeks 8 - 9)} -- Define metrics (Abhinil), tune model (Andrew), final testing and baseline comparison (Murray).
+
+\textbf{Phase 4:} \textit{Refinement \& Results (Weeks 10 - 11)} -- Analyze performance (Abhinil), refine model (Andrew), re-test (Murray).
+
+\textbf{Phase 5:} \textit{Documentation \& Presentation (Weeks 12 - 13)} -- Write report (Abhinil), create poster and slides (Murray), finalize documentation (Andrew).
+
+\subsection{Evaluation Strategy}
+
+Our (approximate) evaluation strategy will: 
+\begin{enumerate}
+  \item \textit{Baseline Comparison:} against word-frequency-based classifiers.
+  \item \textit{Cross-Validation:} k-fold cross-validation.
+  \item \textit{Performance Metrics:} accuracy, precision, recall, and F1-score.
+  \item \textit{Adversarial Testing:} to alter text samples to test robustness.
+  \item \textit{Real-world Evaluation:} testing on unseen text documents. 
+\end{enumerate}
+
+\section{Resources}
+
+In the preparation of our project we reviewed several sources to learn historical background, keywords and vocabularly, and understand
+some motivating literature on the subject. 
+
+\begin{enumerate}
+  \item Historical background from the Wikipedia article on Stylometry. (https://en.wikipedia.org/wiki/Stylometry)
+  \item Data will be sourced from Project Gutenberg, an online collection of free texts. (https://www.gutenberg.org/)
+  \item Burrow's Delta is a well established metric used in Authorship Attribution. (https://aclanthology.org/W15-0709.pdf)
+  \item Text Distortion is a novel approach which seeks to better prepare the data. (https://aclanthology.org/E17-1107.pdf)
+\end{enumerate}
+
+% \begin{itemize}
+%   \item Historical (https://en.wikipedia.org/wiki/Stylometry)
+%   \item Project Gutenberg (https://www.gutenberg.org/)
+%   \item Burrow's Delta (https://aclanthology.org/W15-0709.pdf)
+%   \item Text Distortion (https://aclanthology.org/E17-1107.pdf)
+% \end{itemize}
+
+% In between meetings the collaboration between members
+% will be done asynchronously and facilitated by communication on Github and Discord. 
+
+\end{document}
+\endinput
