@@ -1,1 +1,19 @@
+# macos
 .DS_Store
+
+# tex
+*.aux
+*.bbl
+*-SAVE-ERROR
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+
+# data directory
+data/
+
+# virtual env
+.venv/

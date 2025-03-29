@@ -61,13 +61,13 @@ def get_top_100_authors_gutenberg():
             while line[i] != "(":
                 author_name += line[i]
                 i += 1
-            authors[author_id] = author_name
+            authors[author_id] = author_name.strip()
     return authors
 
 def get_author_titles_gutenberg(author_id):
     titles = {}
     resp = get_page(f"https://gutenberg.org/ebooks/author/{author_id}")
-    line_iter = io.TextIOWrapper(resp, encoding = "utf-8")
+    line_iter = io.TextIOWrapper(resp, encoding = "utf-8") 
     seen_titles = {}
     for line in line_iter:
         line = line.strip()
@@ -76,7 +76,7 @@ def get_author_titles_gutenberg(author_id):
             book_id = line[30:-16]
             for _ in range(4):
                 next(line_iter)
-            book_title = next(line_iter).strip()[20:-7]
+            book_title = next(line_iter).strip()[20:-7].replace("\"", "")
             if seen_titles.get(book_title) is None:
                 seen_titles[book_title] = True
                 titles[book_id] = book_title
@@ -89,14 +89,25 @@ def get_ebook_txt_gutenberg(book_id):
 authors = get_top_100_authors_gutenberg()
 titles = { id: get_author_titles_gutenberg(id) for id in authors }
 
-for id in titles:
-    name = authors[id]
-    title_ids = titles[id]
-    for title_id in title_ids:
-        print(id, name, title_id, title_ids[title_id])
-        book_path = os.path.join(RAW_TEXT_DIR, f"{id}_{title_id}.txt")
-        if not os.path.exists(book_path):
-            book_txt = get_ebook_txt_gutenberg(title_id)
-            with open(book_path, "w") as f:
-                f.write(book_txt)
+with open(os.path.join(DATA_DIR, "records.csv"), "w") as rf:
+    rf.write("author_id,id,title\n")
+    for id in titles:
+        name = authors[id]
+        title_ids = titles[id]
+        for title_id in title_ids:
+            title = title_ids[title_id]
+            print(id, name, title_id, title)
+            rf.write(f"{id},{title_id},\"{title}\"\n")
+            book_path = os.path.join(RAW_TEXT_DIR, f"{id}_{title_id}.txt")
+            if not os.path.exists(book_path):
+                book_txt = get_ebook_txt_gutenberg(title_id)
+                with open(book_path, "w") as bf:
+                    bf.write(book_txt)
+
+with open(os.path.join(DATA_DIR, "authors.csv"), "w") as f:
+    f.write("id,name\n")
+    for id, name in authors.items():
+        title_ids = titles[id]
+        f.write(f"{id},\"{name}\"\n")
+
 print(f"Loaded {len(authors)} authors, totaling {sum(len(titles[id]) for id in titles)} books.")

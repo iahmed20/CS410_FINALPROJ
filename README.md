@@ -1,2 +1,3 @@
-# CS410_FINALPROJ
-Final Project, group members: Murray, Andrew, Abhnil
+# CS 410 Final Project
+Project: Authorship Attribution.
+Group members: Murray, Andrew, Abhnil.
