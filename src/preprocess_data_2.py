@@ -56,7 +56,8 @@ def write_stage_2():
         # https://docs.python.org/3/library/concurrent.futures.html
         with concurrent.futures.ProcessPoolExecutor() as exec:
             for (a_id, t_id), seq in zip(pool, exec.map(parse_book, pool)):
-                s2f.write(f"{a_id},{t_id},{seq}\n")
+                if len(seq) > 1_000: # 1000 character minimum
+                    s2f.write(f"{a_id},{t_id},{seq}\n")
 
 def main():
     write_stage_2()
